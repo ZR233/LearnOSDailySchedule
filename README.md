@@ -103,4 +103,31 @@ pub fn yield_() -> isize { sys_yield() }
 
 过程：
 
+在`page_tables.rs`中有`translated_byte_buffer`函数，通过阅读其逻辑，理解了从虚拟地址指针到物理地址变换的方式。将`*const T`类型转换为`usize`，再将其转换为`VirtAddr`，再将其转换为`VirtPageNum`，再通过`pange_table`找到物理页地址。利用相似原理，实现`get_time`和`get_task_info`函数。
 
+为实现mmap，需要为每个task建立一个页表映射，好在task中的memoryset已存在page_tables字段，而要保持创建的frame不被析构，则需要再添加一个字段以保存BTreeMap，在此思路之下，完成了mmap系统调用。
+
+## Day7
+
+计划：
+
+1. 搞定ch5。
+
+过程：
+
+这一章节感觉较前一章节简单一些，根据实验文档中user_shell的实现，利用现有的fork与exec实现spawn函数。
+在`TaskControlBlockInner`中添加stride调度所需要的字段，修改`TaskManager`中获取下一个任务的逻辑，以满足算法要求。
+
+成果：
+
+1. 理解了进程的创建原理，认识了stride调度的实现方式。
+
+## Day8
+
+1. 下班听课。
+2. 学习第六章内容。
+
+成果：
+
+1. 课听完了。
+2. 阅读了源码。
